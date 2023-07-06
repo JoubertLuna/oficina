@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Detalhes do Contato')
+@section('title', 'Detalhes do Fornecedor')
 
 @section('content_header')
     <div align="left">
-        <h1>Detalhes do Contato <b>{{ $contact->nome }}</b></h1>
+        <h1>Detalhes do Fornecedor <b>{{ $supplier->nome }}</b></h1>
     </div>
     <div align="right">
-        <a href="{{ route('contact.index') }}" class="btn btn-dark">Voltar</a>
+        <a href="{{ route('supplier.index') }}" class="btn btn-dark">Voltar</a>
     </div>
 @stop
 
@@ -20,34 +20,22 @@
                     <hr>
                     <ul>
                         <li>
-                            <strong>Cliente: </strong> {{ $contact->eh_cliente === 'S' ? 'Sim' : 'Não' }}
+                            <strong>Nome: </strong> {{ $supplier->nome }}
                         </li>
                         <li>
-                            <strong>Fornecedor: </strong> {{ $contact->eh_fornecedor === 'S' ? 'Sim' : 'Não' }}
+                            <strong>Nome Fantasia: </strong> {{ $supplier->nome_fantasia }}
                         </li>
                         <li>
-                            <strong>Transportador: </strong> {{ $contact->eh_transportador === 'S' ? 'Sim' : 'Não' }}
+                            <strong>Ativo: </strong> {{ $supplier->ativo === '1' ? 'Sim' : 'Não' }}
                         </li>
                         <li>
-                            <strong>Nome: </strong> {{ $contact->nome }}
+                            <strong>CPF: </strong> {{ $supplier->cpf }}
                         </li>
                         <li>
-                            <strong>Nome Fantasia: </strong> {{ $contact->nome_fantasia }}
+                            <strong>RG: </strong> {{ $supplier->rg }}
                         </li>
                         <li>
-                            <strong>Ativo: </strong> {{ $contact->ativo === '1' ? 'Sim' : 'Não' }}
-                        </li>
-                        <li>
-                            <strong>CPF: </strong> {{ $contact->cpf }}
-                        </li>
-                        <li>
-                            <strong>RG: </strong> {{ $contact->rg }}
-                        </li>
-                        <li>
-                            <strong>CNPJ: </strong> {{ $contact->cnpj }}
-                        </li>
-                        <li>
-                            <strong>Data de Cadastro: </strong> {{ $contact->data_cadastro }}
+                            <strong>CNPJ: </strong> {{ $supplier->cnpj }}
                         </li>
                     </ul>
                 </div>
@@ -56,51 +44,71 @@
                     <hr>
                     <ul>
                         <li>
-                            <strong>Telefone: </strong> {{ $contact->fone }}
+                            <strong>Telefone: </strong> {{ $supplier->fone }}
                         </li>
                         <li>
-                            <strong>Celular: </strong> {{ $contact->celular }}
+                            <strong>Celular: </strong> {{ $supplier->celular }}
                         </li>
                         <li>
-                            <strong>E-mail: </strong> {{ $contact->email }}
+                            <strong>E-mail: </strong> {{ $supplier->email }}
                         </li>
                     </ul>
                     <h5><b>Endereço</b></h5>
                     <hr>
                     <ul>
                         <li>
-                            <strong>CEP: </strong> {{ $contact->cep }}
+                            <strong>CEP: </strong> {{ $supplier->cep }}
                         </li>
                         <li>
-                            <strong>Logradouro: </strong> {{ $contact->logradouro }}
+                            <strong>Logradouro: </strong> {{ $supplier->logradouro }}
                         </li>
                         <li>
-                            <strong>Bairro: </strong> {{ $contact->bairro }}
+                            <strong>Bairro: </strong> {{ $supplier->bairro }}
                         </li>
                         <li>
-                            <strong>Cidade: </strong> {{ $contact->cidade }}
+                            <strong>Cidade: </strong> {{ $supplier->cidade }}
                         </li>
                         <li>
-                            <strong>Estado: </strong> {{ $contact->uf }}
+                            <strong>Estado: </strong> {{ $supplier->uf }}
                         </li>
                         <li>
-                            <strong>Número: </strong> {{ $contact->numero }}
+                            <strong>Número: </strong> {{ $supplier->numero }}
                         </li>
                         <li>
-                            <strong>Complemento: </strong> {{ $contact->complemento }}
+                            <strong>Complemento: </strong> {{ $supplier->complemento }}
                         </li>
                     </ul>
                 </div>
             </div>
             <hr>
+            @include('oficina.painel.includes.alerts')
             <div class="form-group">
-                <form action="{{ route('contact.destroy', $contact->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" title="Deletar Contato - {{ $contact->nome }}" class="btn btn-sm btn-dark"
-                        width="150"><i class="fa fa-trash text-danger"></i>
-                        Deletar Contato - {{ $contact->nome }}</button>
-                </form>
+                <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#modal-primary"><i
+                        class="fa fa-trash text-danger"></i>
+                    Deletar Fornecedor - {{ $supplier->nome }}</button>
+            </div>
+
+            <div class="modal fade" id="modal-primary">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-default">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Deseja Realmente Excluir?</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div align="center" class="modal-body">
+                            <form action="{{ route('supplier.destroy', $supplier->url) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" title="Deletar Usuário - {{ $supplier->nome }}"
+                                    class="btn btn-sm btn-dark" width="150"><i class="fa fa-trash text-danger"></i>
+                                    Deletar Fornecedor - {{ $supplier->nome }}</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer justify-content-between"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

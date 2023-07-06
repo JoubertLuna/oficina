@@ -18,14 +18,22 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $RoleSuperAdministrador = Role::first()->id;
-        $RoleMecanico = Role::find('2')->id;
-        $RoleRecepcionista = Role::find('3')->id;
+        $RoleRecepcionista = Role::find('2')->id;
+        $RoleMecanico = Role::find('3')->id;
+        $RoleCliente = Role::find('4')->id;
 
         User::create([
             'name' => 'Super Administrador - e-oficina',
             'email' => 'super@oficina.com',
             'password' => Hash::make('@super123'),
             'role_id' => $RoleSuperAdministrador,
+        ]);
+
+        User::create([
+            'name' => 'Recepcionista - e-oficina',
+            'email' => 'recepcionista@oficina.com',
+            'password' => Hash::make('@recepcionista123'),
+            'role_id' => $RoleRecepcionista,
         ]);
 
         User::create([
@@ -36,10 +44,10 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Recepcionista - e-oficina',
-            'email' => 'recepcionista@oficina.com',
-            'password' => Hash::make('@recepcionista123'),
-            'role_id' => $RoleRecepcionista,
+            'name' => 'Cliente - e-oficina',
+            'email' => 'cliente@oficina.com',
+            'password' => Hash::make('@cliente123'),
+            'role_id' => $RoleCliente,
         ]);
     }
 }

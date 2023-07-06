@@ -20,7 +20,13 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = $this->supplier->latest()->paginate(100000000);
+        if (auth()->user()->id <= '2') {
+            $suppliers = $this->supplier->latest()->paginate(100000000);
+        } else {
+            $suppliers = $this->supplier->where('id', '=', auth()->user()->id)
+            ->latest()
+            ->paginate(100000000);
+        }
         return view('oficina.painel.pages.supplier.index', compact('suppliers'));
     }
 

@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->id <= '3') {
+        if (auth()->user()->id <= '2') {
             $users = $this->user->with('role')->latest()->paginate(100000000);
         } else {
             $users = $this->user->where('id', '=', auth()->user()->id)

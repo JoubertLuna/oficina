@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', "Editar Contato {$contact->nome}")
+@section('title', "Editar Contato {$supplier->nome}")
 
 @section('content_header')
     <div align="right">
-        <a href="{{ route('contact.index') }}" class="btn btn-dark"><i class="fas fa-backward"></i> Voltar</a>
+        <a href="{{ route('supplier.index') }}" class="btn btn-dark"><i class="fas fa-backward"></i> Voltar</a>
     </div>
 @stop
 
@@ -12,9 +12,9 @@
     <div class="card">
 
         <div class="card-body">
-            <form action="{{ route('contact.update', $contact->id) }}" method="POST" class="form">
+            <form action="{{ route('supplier.update', $supplier->url) }}" method="POST" class="form">
                 @method('PUT')
-                @include('erp.painel.pages.cadastros.contact._partials.form')
+                @include('oficina.painel.pages.supplier._partials.form')
             </form>
         </div>
     </div>

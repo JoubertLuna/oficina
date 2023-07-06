@@ -17,12 +17,16 @@ class RoleSeeder extends Seeder
             'role' => 'Role_Super_Administrador',
         ]);
         Role::create([
+            'nome' => 'Recepcionista',
+            'role' => 'Role_Recepcionista',
+        ]);
+        Role::create([
             'nome' => 'Mecânico',
             'role' => 'Role_Mecanico',
         ]);
         Role::create([
-            'nome' => 'Recepcionista',
-            'role' => 'Role_Recepcionista',
+            'nome' => 'Cliente',
+            'role' => 'Role_Cliente',
         ]);
     }
 }
